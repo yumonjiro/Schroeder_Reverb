@@ -1,0 +1,20 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Google Test Debug",
+      "program": "/Users/yumonji/Workspace/schroeder_reverb/out/build/Clang 15.0.0 arm64-apple-darwin24.4.0/tests/run_tests",
+      "args": ["--gtest_filter=CombFilterTest.ProcessWithZeroGain"],
+      "cwd": "${workspaceFolder}/out/build/Clang 15.0.0 arm64-apple-darwin24.4.0",
+      "preLaunchTask": "CMake: build",
+      "sourceMap": {
+        "/Users/yumonji/Workspace/schroeder_reverb": "${workspaceFolder}"
+      }
+    }
+  ]
+}
