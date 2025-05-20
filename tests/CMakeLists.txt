@@ -12,5 +12,6 @@ target_link_libraries(run_tests
   delayline
   Schroeder_Reverb
 )
+add_subdirectory(process)
 include(GoogleTest)
 gtest_discover_tests(run_tests)

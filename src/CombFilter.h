@@ -18,6 +18,9 @@ class CombFilter {
   void reset();
   void updateParameters(float sampleRate, float delayTime, float gain);
 
+  float getDelayTime() { return delayTime; }
+  float getGain() { return gain; }
+
  private:
   DelayLine delayLine;
   float currentSampleRate;

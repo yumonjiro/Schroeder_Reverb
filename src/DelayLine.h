@@ -10,8 +10,8 @@ class DelayLine {
  public:
   // キャパシティは、バイト単位！ delaysample * sizeof(float)
   DelayLine(int delaySamples, int capacity)
-      : currentDelaySamples(delaySamples),
-        rb(std::make_unique<Ring_Buffer>(capacity * sizeof(float))) {
+      : rb(std::make_unique<Ring_Buffer>(capacity * sizeof(float))),
+        currentDelaySamples(delaySamples) {
     clear();
   }
   // キャパシティは、バイト単位！ delaysample * sizeof(float)
