@@ -119,7 +119,7 @@ int main() {
   if (maxDelaySamples <= 0)
     maxDelaySamples = static_cast<int>(sampleRate * 0.1);
 
-  CombFilter combFilter(sampleRate, delayTimeSeconds, feedbackGain);
+  CombFilter combFilter(sampleRate, delayTimeSeconds, feedbackGain, 0.4f);
 
   std::cout << "Comb Filter Test with WAV output" << std::endl;
   // (中略：パラメータ表示など)

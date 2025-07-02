@@ -28,6 +28,19 @@ target_link_libraries(Schroeder_Reverb
     delayline
     CombFilter
 )
+
+add_library(AllpassFilter STATIC AllpassFilter.cpp)
+target_link_libraries(AllpassFilter
+  PRIVATE 
+    delayline
+)
+add_library(Reverb STATIC Reverb.cpp)
+target_link_libraries(Reverb
+  PRIVATE
+    delayline
+    CombFilter
+    AllpassFilter
+)
 # Schroeder_Reverb.h のためにインクルードディレクトリを指定
 target_include_directories(Schroeder_Reverb
   PUBLIC

@@ -9,7 +9,7 @@ class CombFilterTest : public ::testing::Test {
 };
 
 TEST_F(CombFilterTest, Construction) {
-  CombFilter filter(sampleRate, delayTime, gain);
+  CombFilter filter(sampleRate, delayTime, gain, 0.4f);
 
   // First output should be input only (delayed output starts at 0)
   float input = 1.0f;
@@ -17,7 +17,7 @@ TEST_F(CombFilterTest, Construction) {
 }
 
 TEST_F(CombFilterTest, ProcessWithZeroGain) {
-  CombFilter filter(sampleRate, delayTime, 0.0f);
+  CombFilter filter(sampleRate, delayTime, 0.0f, 0.4f);
 
   // With zero gain, should act as pure delay
   float input = 1.0f;
@@ -36,7 +36,7 @@ TEST_F(CombFilterTest, ProcessWithZeroGain) {
 }
 
 TEST_F(CombFilterTest, ProcessWithFeedback) {
-  CombFilter filter(sampleRate, delayTime, 0.5f);
+  CombFilter filter(sampleRate, delayTime, 0.5f, 0.4f);
 
   // Input impulse
   float firstOutput = filter.process(1.0f);
@@ -53,7 +53,7 @@ TEST_F(CombFilterTest, ProcessWithFeedback) {
 }
 
 TEST_F(CombFilterTest, UpdateParameters) {
-  CombFilter filter(sampleRate, delayTime, gain);
+  CombFilter filter(sampleRate, delayTime, gain, 0.4f);
 
   // Update all parameters
   float newSampleRate = 96000.0f;
@@ -77,15 +77,15 @@ TEST_F(CombFilterTest, UpdateParameters) {
 
 TEST_F(CombFilterTest, EdgeCases) {
   // Very short delay
-  CombFilter shortDelay(sampleRate, 1.0f / sampleRate, gain);
+  CombFilter shortDelay(sampleRate, 1.0f / sampleRate, gain, 0.4f);
   EXPECT_FLOAT_EQ(shortDelay.process(1.0f), 1.0f);
   EXPECT_FLOAT_EQ(shortDelay.process(0.0f), 0.5f);
 
   // Very small gain
-  CombFilter smallGain(sampleRate, delayTime, 0.001f);
+  CombFilter smallGain(sampleRate, delayTime, 0.001f, 0.4f);
   EXPECT_FLOAT_EQ(smallGain.process(1.0f), 1.0f);
 
   // Very large gain
-  CombFilter largeGain(sampleRate, delayTime, 0.999f);
+  CombFilter largeGain(sampleRate, delayTime, 0.999f, 0.4f);
   EXPECT_FLOAT_EQ(largeGain.process(1.0f), 1.0f);
 }

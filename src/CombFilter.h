@@ -1,4 +1,5 @@
 #pragma once
+#include "AudioEffect.h"
 #include "DelayLine.h"
 
 // 　コムフィルタの実装
@@ -11,13 +12,14 @@
 
 class CombFilter {
  public:
-  CombFilter(float sampleRate, float delayTime, float gain);
+  CombFilter(float sampleRate, float delayTime, float gain, float dumping);
 
   void setup(float sampleRate, float delayTime);
   float process(float sample);
   void reset();
+  void setSampleRate(float newSampleRate);
   void updateParameters(float sampleRate, float delayTime, float gain);
-
+  void updateDumping(float newDumping);
   float getDelayTime() { return delayTime; }
   float getGain() { return gain; }
 
@@ -26,4 +28,6 @@ class CombFilter {
   float currentSampleRate;
   float delayTime;
   float gain;
+  float dumping_;
+  float store_;
 };
